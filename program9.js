@@ -7,22 +7,20 @@ var http = require("http"),
 var quenue = [first,second,third],
 	result = [];
 
+// console.log(quenue);
+
 //helper methods
-function getHandler(res){
-	res.setEncoding('utf8');
-	res.pipe(concatStream(function(data){
-		console.log(data.length);
-		console.log(data);
-	}))
-	res.on('error',function(err){
-		console.log(err.message);
-	})
-}
 
 function runSeries(element){
 	if (element){
-		http.get(element, getHandler)
-		return runSeries(quenue.shift());
+		http.get(element, function(res){
+			res.setEncoding('utf8');
+			res.pipe(concatStream(function(data){
+				console.log(data);
+
+			}))
+			return runSeries(quenue.shift());
+		})
 	}else{
 	}
 }
