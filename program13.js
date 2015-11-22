@@ -1,6 +1,6 @@
 var http = require('http'),
 	url = require('url'),
-	port = process.argv[2];
+	incomingport = process.argv[2];
 
 var server = http.createServer(function(request,response){
 	
@@ -35,4 +35,4 @@ var server = http.createServer(function(request,response){
 
 });
 
-server.listen(port);
+server.listen(incomingport);
